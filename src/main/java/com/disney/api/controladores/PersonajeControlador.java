@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.disney.api.Utils.JWTUtil;
 import com.disney.api.entidades.Personaje;
 import com.disney.api.servicios.PersonajeServi;
 
@@ -20,8 +18,6 @@ public class PersonajeControlador extends ControladorBaseImpl<Personaje, Persona
 	@Autowired
 	private PersonajeServi personajeServi;	
 	
-	@Autowired
-	private JWTUtil jwtUtilM;
 	
 	@GetMapping("/filtrarNombre")
 	public ResponseEntity<?> buscarPorNombre(@RequestParam String nombre) {

@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,7 +38,7 @@ public class Audiovisual implements Serializable {
 	@Size(min = 1, max = 5)
 	private Integer calificacion;
 	
-
+	@JsonIgnore
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "genero_id")
 	private Genero genero;

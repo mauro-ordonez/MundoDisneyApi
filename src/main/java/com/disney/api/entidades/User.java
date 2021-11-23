@@ -18,12 +18,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Usuario {
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nombre;
+	private String name;
 	private String email;
 	private String password;
+	private String token;
 }

@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,7 +30,7 @@ public class Genero implements Serializable{
 	@Column
 	private String nombre;
 
-	//@OneToMany(mappedBy = "genero", cascade = CascadeType.ALL , orphanRemoval = true)
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinTable(name ="genero_audiovisual", joinColumns = @JoinColumn(name="genero_id"), 
 	inverseJoinColumns = @JoinColumn(name ="audiovisual_id" ))

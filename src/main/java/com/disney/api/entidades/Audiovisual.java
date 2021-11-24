@@ -2,12 +2,11 @@ package com.disney.api.entidades;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,13 +37,14 @@ public class Audiovisual implements Serializable {
 	@Size(min = 1, max = 5)
 	private Integer calificacion;
 	
-	@JsonIgnore
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "genero_id")
+	@ManyToOne()
+	@JoinColumn(name = "genero")
+	@JsonIgnoreProperties({"peliculas"})
 	private Genero genero;
 		
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Personaje>personajes = new ArrayList<Personaje>();
+	@ManyToMany(cascade = CascadeType.MERGE,mappedBy = "peliculas" )
+	@JsonIgnoreProperties("peliculas")
+	private Set<Personaje>personajes = new HashSet<Personaje>();
 
 	
 }

@@ -35,7 +35,7 @@ public class UserController extends ControladorBaseImpl<User, UsuarioServi> {
 		String secretKey = "mySecretKey";
 		List<GrantedAuthority> grantedAuthorities = AuthorityUtils
 				.commaSeparatedStringToAuthorityList("ROLE_USER");
-		
+/*		
 		String token = Jwts
 				.builder()
 				.setId("softtekJWT")
@@ -48,8 +48,8 @@ public class UserController extends ControladorBaseImpl<User, UsuarioServi> {
 				.setExpiration(new Date(System.currentTimeMillis() + 600000))
 				.signWith(SignatureAlgorithm.HS512,
 						secretKey.getBytes()).compact();
-
-		return "Bearer " + token;
+*/
+		return "Bearer ";// + token;
 	}
 
 }

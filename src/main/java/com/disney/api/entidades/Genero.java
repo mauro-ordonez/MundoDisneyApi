@@ -1,11 +1,11 @@
 package com.disney.api.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,11 +30,9 @@ public class Genero implements Serializable{
 	@Column
 	private String nombre;
 
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinTable(name ="genero_audiovisual", joinColumns = @JoinColumn(name="genero_id"), 
-	inverseJoinColumns = @JoinColumn(name ="audiovisual_id" ))
-	private List<Audiovisual>peliculaSerieAsociadas;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "genero")
+	@JsonIgnoreProperties({"genero"})
+	private List<Audiovisual>peliculas = new ArrayList<Audiovisual>();
 
 	
 

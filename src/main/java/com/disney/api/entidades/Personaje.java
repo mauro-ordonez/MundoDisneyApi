@@ -1,15 +1,14 @@
 package com.disney.api.entidades;
 
 import javax.persistence.*;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "personajes")
@@ -35,8 +34,10 @@ public class Personaje implements Serializable{
 	@Column
 	private String historia; 
 		
-	@ManyToMany(mappedBy = "personajes")
-	private List<Audiovisual> aparicionPeliculaSeire = new ArrayList<Audiovisual>();
+	@ManyToMany(cascade = CascadeType.MERGE)
+	@JoinTable(name="personaje_pelicula", joinColumns = {@JoinColumn(name="personaje_id")},inverseJoinColumns = {@JoinColumn(name="pelicula_id")})
+	@JsonIgnoreProperties("personajes")
+	private Set<Audiovisual>peliculas = new HashSet<Audiovisual>();
 
 	
 	
